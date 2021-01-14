@@ -29,31 +29,35 @@ public class Tester {
 
 		SortableLinkedList random = new SortableLinkedList();
 		for (int i = 0; i < 100; i++) {
-			random.add((int)(Math.random() * 1000));
+			random.add((int)(Math.random() * 1000 - 500));
 		}
 		System.out.println("Sort Random values:");
 		System.out.println(random);
-		Radix.radixSortSimple(random);
+		Radix.radixSort(random);
 		System.out.println(random);
 		System.out.println("Is sorted: " + Tester.isSorted(random));
 
+		System.out.println();
+
 		SortableLinkedList sorted = new SortableLinkedList();
-		for (int i = 0; i < 1000; i += 7) {
+		for (int i = -500; i < 1000; i += 7) {
 			sorted.add(i);
 		}
 		System.out.println("Sort Sorted values:");
 		System.out.println(sorted);
-		Radix.radixSortSimple(sorted);
+		Radix.radixSort(sorted);
 		System.out.println(sorted);
 		System.out.println("Is sorted: " + Tester.isSorted(sorted));
 
+		System.out.println();
+
 		SortableLinkedList reversed = new SortableLinkedList();
-		for (int i = 1000; i >= 0; i -= 7) {
+		for (int i = 500; i >= -500; i -= 7) {
 			reversed.add(i);
 		}
 		System.out.println("Sort Reversed values:");
 		System.out.println(reversed);
-		Radix.radixSortSimple(reversed);
+		Radix.radixSort(reversed);
 		System.out.println(reversed);
 		System.out.println("Is sorted: " + Tester.isSorted(reversed));
 	}
