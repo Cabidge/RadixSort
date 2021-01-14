@@ -1,12 +1,6 @@
 public class Tester {
 	public static void main(String[] abc) {
-		SortableLinkedList random = new SortableLinkedList();
-		for (int i = 0; i < 10000000; i++) {
-			random.add((int)(Math.random() * 1000));
-		}
-		System.out.println("Sort Random values:");
-		Radix.radixSortSimple(random);
-		System.out.println("Is sorted: " + Tester.isSorted(random));
+		// Tester.testRandomSort(1000000);
 
 		// System.out.println("Expects 5: "+Radix.nth(-12345, 0));
 		// System.out.println("Expects 5: "+Radix.nth(12345, 0));
@@ -72,6 +66,24 @@ public class Tester {
 		// Radix.radixSort(reversed);
 		// System.out.println(reversed);
 		// System.out.println("Is sorted: " + Tester.isSorted(reversed));
+	}
+
+	public static void testRandomSort(int size) {
+		SortableLinkedList random = new SortableLinkedList();
+		for (int i = 0; i < size; i++) {
+			random.add((int)(Math.random() * 1000));
+		}
+		System.out.println("Sort Random values:");
+		Radix.radixSortSimple(random);
+		System.out.println("Is sorted: " + Tester.isSorted(random));
+	}
+
+	public static void testNth(int times) {
+		for (int i = 0; i < times; i++) {
+			int num = (int)(Math.random() * 10000);
+			int col = (int)(Math.random() * 6);
+			Radix.nth(num, col);
+		}
 	}
 
 	public static boolean isSorted(SortableLinkedList data) {
