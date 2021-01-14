@@ -9,7 +9,7 @@ public class Radix {
 
     // return the number of digits in n
     public static int length(int n) {
-        if (n == 0) return 0;
+        if (n == 0) return 1;
 
         return (int)Math.log10(Math.abs(n)) + 1;
     }
@@ -21,10 +21,37 @@ public class Radix {
     }
 
     public static void radixSortSimple(SortableLinkedList data) {
+        if (data.size() <= 1) {
+            return;
+        }
 
+        boolean loopedOnce = false;
+        Integer current;
+        int maxLength = 1;
+        SortableLinkedList[] buckets = Radix.makeBuckets();
+        for (int i = 0; i < maxLength; i++) {
+            while (data.size() > 0) {
+                current = data.remove(0);
+                if (!loopedOnce) {
+                    maxLength = Math.max(maxLength, Radix.length(current));
+                }
+                buckets[Radix.nth(current, i)].add(current);
+            }
+            Radix.merge(data, buckets);
+
+            loopedOnce = true;
+        }
     }
 
     public static void radixSort(SortableLinkedList data) {
-        
+
+    }
+
+    private static SortableLinkedList[] makeBuckets() {
+        SortableLinkedList[] buckets = new SortableLinkedList[10];
+        for (int i = 0; i < 10; i++) {
+            buckets[i] = new SortableLinkedList();
+        }
+        return buckets;
     }
 }
