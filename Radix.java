@@ -4,6 +4,9 @@ public class Radix {
     // get nth digit of an int, where 0 is the ones column, 1 is tens, etc.
     public static int nth(int n, int col) {
         int place = (int)Math.pow(10, col);
+        if (n < 0) {
+            return -(n / place) % 10;
+        }
         return (n / place) % 10;
     }
 
@@ -59,7 +62,7 @@ public class Radix {
 
             maxLength = Math.max(maxLength, Radix.length(current));
             if (current.compareTo(0) < 0) {
-                bucket = bucketsNeg[Radix.nth(current, 0) + 9];
+                bucket = bucketsNeg[9 - Radix.nth(current, 0)];
             } else {
                 bucket = buckets[Radix.nth(current, 0)];
             }
@@ -79,7 +82,7 @@ public class Radix {
 
             while (negativeData.size() > 0) {
                 current = negativeData.remove(0);
-                bucketsNeg[Radix.nth(current, i) + 9].add(current);
+                bucketsNeg[9 - Radix.nth(current, i)].add(current);
             }
             Radix.merge(negativeData, bucketsNeg);
         }
