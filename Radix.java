@@ -28,21 +28,18 @@ public class Radix {
             return;
         }
 
-        boolean loopedOnce = false;
         Integer current;
         int maxLength = 1;
         SortableLinkedList[] buckets = Radix.makeBuckets();
         for (int i = 0; i < maxLength; i++) {
             while (data.size() > 0) {
                 current = data.remove(0);
-                if (!loopedOnce) {
+                if (i == 0) {
                     maxLength = Math.max(maxLength, Radix.length(current));
                 }
                 buckets[Radix.nth(current, i)].add(current);
             }
             Radix.merge(data, buckets);
-
-            loopedOnce = true;
         }
     }
 
