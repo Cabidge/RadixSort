@@ -9,5 +9,19 @@ public class Tester {
 		System.out.println("Expects 2: "+Radix.length(15));
 		System.out.println("Expects 2: "+Radix.length(-10));
 		System.out.println("Expects 4: "+Radix.length(5112));
+
+		SortableLinkedList list = new SortableLinkedList();
+		SortableLinkedList[] buckets = new SortableLinkedList[10];
+		for (int i = 0; i < 10; i++) {
+			SortableLinkedList bucket = new SortableLinkedList();
+			for (int j = 0; j < 2; j++) {
+				bucket.add(j + i * 10);
+			}
+			buckets[i] = bucket;
+		}
+
+		Radix.merge(list, buckets);
+		System.out.println("Expects [0, 1, 10, 11, 20, 21...90, 91]");
+		System.out.println(list);
 	}
 }
