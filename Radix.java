@@ -24,10 +24,6 @@ public class Radix {
     }
 
     public static void radixSortSimple(SortableLinkedList data) {
-        if (data.size() <= 1) {
-            return;
-        }
-
         Integer current;
         int maxLength = 1;
         SortableLinkedList[] buckets = Radix.makeBuckets();
