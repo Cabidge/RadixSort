@@ -14,8 +14,8 @@ public class Radix {
         return (int)Math.log10(Math.abs(n)) + 1;
     }
 
-    public static void merge(MyLinkedList original, MyLinkedList[] buckets) {
-        for (MyLinkedList bucket : buckets) {
+    public static void merge(SortableLinkedList original, SortableLinkedList[] buckets) {
+        for (SortableLinkedList bucket : buckets) {
             original.extend(bucket);
         }
     }
